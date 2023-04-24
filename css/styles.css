@@ -56,6 +56,7 @@ body{
     --section-icon-color: #8e8f99;
     --modal-color: #fcfcfc;
     --transition-time: 250ms;
+    --animation-delay: cubic-bezier(0.4, 0, 0.2, 1);
 }
 .visually-hidden {
     position: absolute;
@@ -143,12 +144,9 @@ h1,h2,h3,h4,h5,h6,p,ul{
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background-color var(--transition-time) cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background-color var(--transition-time) var(--animation-delay);
 }
-.media-pic:hover{
-    background-color: var(--bth-hover-color);
-}
-.media-pic:focus{
+.media-pic:hover,.media-pic:focus{
     background-color: var(--bth-hover-color);
 }
 .media-logo{
@@ -193,11 +191,11 @@ h1,h2,h3,h4,h5,h6,p,ul{
     align-items: center;
     justify-content: center;
     color: var(--section-icon-color);
-    transition: border-color var(--transition-time) cubic-bezier(0.4, 0, 0.2, 1),
-    color var(--transition-time) cubic-bezier(0.4, 0, 0.2, 1);
+    transition: border-color var(--transition-time) var(--animation-delay),
+    color var(--transition-time) var(--animation-delay);
 }
 .icon-pic:hover,
-.icon-pic:focus{
+.icon-pic:focus {
     border-color: var(--bth-hover-color);
     color: var(--bth-hover-color);
 }
@@ -232,6 +230,10 @@ line-height: 1.5;
 color: var(--title-text-color);
 padding: 24px 0;
 display: block;
+transition: color var(--transition-time) var(--animation-delay);
+}
+.contact-link.current{
+    color: var(--bth-hover-color);
 }
 .current::after{
     position: absolute;
@@ -250,7 +252,7 @@ display: block;
     line-height: 1.5;
     letter-spacing: 0.02em;
     color: var(--base-text-color);
-    transition: color var(--transition-time) cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color var(--transition-time) var(--animation-delay);
 }
 .contact-link:hover,.contact-link:focus{
     color: var(--bth-hover-color);
@@ -282,7 +284,7 @@ display: block;
    border: none;
    border-radius: 4px;
    margin: 0 auto;
-   transition: background-color var(--transition-time) cubic-bezier(0.4, 0, 0.2, 1);
+   transition: background-color var(--transition-time) var(--animation-delay);
 }
 .button:hover,.button:focus{
    background-color: var(--bth-hover-color);
@@ -345,9 +347,10 @@ display: block;
     color: var(--accent-color);
     background-color: var(--second-white-text);
     border: 1px solid var(--bottom-color);
-    transition: color var(--transition-time) cubic-bezier(0.4, 0, 0.2, 1),
-    background-color var(--transition-time) cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow var(--transition-time) cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color var(--transition-time) var(--animation-delay),
+    background-color var(--transition-time) var(--animation-delay),
+    box-shadow var(--transition-time) var(--animation-delay),
+    border var(--transition-time) var(--animation-delay);
 }
 .portfolio-button:hover,.portfolio-button:focus{
     color: var(--primary-text-color);
@@ -358,7 +361,7 @@ display: block;
     0px 2px 2px rgba(0, 0, 0, 0.12);;
 }
 .section{
-    padding: 96px 120px;
+    padding: 96px 0 120px 0;
 }
 .button-list{
     display: flex;
@@ -379,7 +382,8 @@ display: block;
 .card{
     width: calc((100% - 48px) / 3);
 }
-.card:hover .card-overlay{
+.card:hover .card-overlay,
+.card:focus .card-overlay{
     transform: translateY(0);
 }
 .card-link{
@@ -407,10 +411,10 @@ display: block;
     transform: translateY(100%);
     transition: transform var(--transition-time);
     background: var(--accent-color);
-    letter-spacing: 0,02em;
+    letter-spacing: 0.02em;
     color: var(--second-white-text);
-    text-align: center;
-    line-height: 1,5;
+    text-align: left;
+    line-height: 1.5;
     font-size: 16px;
     font-weight: 400;
     mix-blend-mode: normal;
@@ -472,8 +476,8 @@ img{
     width: 100%;
     height: 100%;
     background: rgba(46, 47, 66, 0.4);
-    transition: opasity var(--transition-time) cubic-bezier(0.4, 0, 0.2, 1),
-    visibility var(--transition-time) cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity var(--transition-time) var(--animation-delay),
+    visibility var(--transition-time) var(--animation-delay);
 }
 .beckdrop.is-hidden{ 
     opacity: 0;
@@ -489,9 +493,9 @@ img{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) rotate(360deg) scale(1);
-    transition: transform var(--transition-time) cubic-bezier(0.4, 0, 0.2, 1),
-    opacity var(--transition-time) cubic-bezier(0.4, 0, 0.2, 1),
-    visibility var(--transition-time) cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform var(--transition-time) var(--animation-delay),
+    opacity var(--transition-time) var(--animation-delay),
+    visibility var(--transition-time) var(--animation-delay);
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14),
     0px 1px 3px rgba(0, 0, 0, 0.12),
     0px 1px 2px rgba(0, 0, 0, 0.2);
@@ -509,4 +513,15 @@ img{
     border-radius: 50%;
     border: none;
     background: var(--bth-secondary-color);
+    cursor: pointer;
+    transition: background-color var(--transition-time) var(--animation-delay),
+    color var(--transition-time) var(--animation-delay);
+}
+.modal-button:hover,.modal-button:focus{
+    color: #ffffff;
+    background-color: var(--bth-hover-color);
+}
+.modal-icon{
+    fill: currentColor;
+    transition: backround var(--transition-time) var(--animation-delay);
 }
